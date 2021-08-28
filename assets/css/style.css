@@ -1,0 +1,6 @@
+.navbar-title {
+    color: white;
+    background-image: linear-gradient(to right, darkblue , rgb(75, 113, 238));
+    text-align: center;
+    padding: .25rem;
+}
