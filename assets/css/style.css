@@ -4,3 +4,43 @@
     text-align: center;
     padding: .25rem;
 }
+
+/* CITY SEARCH CONTAINER */
+
+form div label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: .5rem;
+
+}
+
+#city-name {
+    padding: .5rem;
+    width: 100%;
+    margin: .5rem 0rem;
+}
+
+#search-btn {
+    width: 100%;
+    padding: .5rem;
+    margin: .5rem 0rem;
+}
+
+.dividing-line {
+    display: block;
+    width: 100%;
+    border-bottom: black 1px solid;
+    margin: .25rem 0rem .5rem 0rem;
+}
+
+form div ul li {
+    border-radius: 4px;
+    margin: .25rem 0rem;
+    list-style-type: none;
+}
+
+/* HISTORY OF SEARCHES */
+
+.btn-secondary {
+    width: 100%;
+}

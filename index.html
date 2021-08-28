@@ -22,7 +22,20 @@
     </header>
     <div class="container">
         <div class="row">
-            <div class="col-md-3 border">Search for a City:</div>
+            <div class="col-md-3 border">
+                <form>
+                    <!-- Seach for a city -->
+                    <div class="form-group">
+                        <label for="city-name">Search for a City:</label>
+                        <input type="text" class="form-control" id="city-name" placeholder="City Name">
+                        <button id="search-btn" type="button" class="btn btn-primary">Search</button>
+                        <span class="dividing-line"></span>
+                        <!-- Past City Searches -->
+                        <ul id="city-list" class="list-group">
+                        </ul>
+                    </div>
+                </form>
+            </div>
             <div class="col-md-9">
                 <div class="row">
                     <div class="col-md-12 border">Dummy Text:</div>
