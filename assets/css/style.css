@@ -44,3 +44,25 @@ form div ul li {
 .btn-secondary {
     width: 100%;
 }
+
+/* 5 DAY FORECAST */
+.forecastCard {
+    background-image: linear-gradient(rgba(47, 47, 58, 0.842) , rgba(75, 85, 117, 0.829));
+    
+}
+
+.forecastCard h6 {
+    color: white;
+    font-weight: bold;
+    margin-bottom: .25rem;
+}
+
+.forecastCard p {
+    color: white;
+    margin-bottom: .25rem;
+}
+
+.forecastCard img {
+    height: 40%;
+    width: 40%;
+}
