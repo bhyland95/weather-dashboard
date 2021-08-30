@@ -50,13 +50,14 @@ var fetchWeatherData = function (cityName) {
         searchHistory.push(cityName)
         //Pushes Array into localstorage 
         saveSearch();
-        //adds button
+        //adds list item button if city isnt in search history
         var liEl = document.createElement('li');
         var buttonEl = document.createElement('button')
         buttonEl.textContent = cityName;
         cityName = cityName.replace(/\s+/g, '')
         buttonEl.setAttribute('class', 'btn btn-secondary ' + cityName);
         buttonEl.setAttribute('type', 'button');
+        //search to see if city is in search history
         if ($('.' + cityName).length) {
           return
         } else {
@@ -100,44 +101,46 @@ var saveSearch = function () {
 
 //DISPLAYS CURRENT WEATHER STATS
 var currentWeather = function (weather) {
-  //clears out WeatherEl Div before adding info
-  weatherEl.empty();
 
-  //adds city title 
-  var cityTitle = document.createElement('h2')
-  cityTitle.textContent = weather.city.name + " (" + moment.unix(weather.list[0].dt).format("MMM D, YYYY") + ') ';
-
-  //adds weather icon
-  var forecastImage = document.createElement('img')
-  forecastImage.setAttribute('src', `https://openweathermap.org/img/wn/${weather.list[0].weather[0].icon}@2x.png`)
-  cityTitle.append(forecastImage)
-
-  weatherEl.append(cityTitle)
-
-  //Adds temperature
-  var forecastTemp = document.createElement('p')
-  forecastTemp.textContent = 'Temp: ' + weather.list[0].main.temp + '°F'
-  weatherEl.append(forecastTemp)
-
-  //Gets Wind for each day
-  var forecastWind = document.createElement('p')
-  forecastWind.textContent = 'Wind: ' + weather.list[0].wind.speed + 'MPH';
-  weatherEl.append(forecastWind)
-
-  //Gets Humidity for each day
-  var forecastHumidity = document.createElement('p')
-  forecastHumidity.textContent = 'Humidity: ' + weather.list[0].main.humidity + '%'
-  weatherEl.append(forecastHumidity)
-
-  //Gets Lat and Long of City 
-  var cityLat = weather.city.coord.lat
-  var cityLon = weather.city.coord.lon
-
+//Gets Lat and Long of City 
+var cityLat = weather.city.coord.lat
+var cityLon = weather.city.coord.lon
 
   //Makes Fetch call to get UVI and adds to weatherEl
   fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&appid=${apiKey}`)
     .then(response => response.json())
     .then(data => {
+      //clears out WeatherEl Div before adding info
+      weatherEl.empty();
+
+      //adds city title 
+      var cityTitle = document.createElement('h2')
+      cityTitle.textContent = weather.city.name + " (" + moment.unix(weather.list[0].dt).format("MMM D, YYYY") + ') ';
+
+      //adds weather icon
+      var forecastImage = document.createElement('img')
+      forecastImage.setAttribute('src', `https://openweathermap.org/img/wn/${weather.list[0].weather[0].icon}@2x.png`)
+      cityTitle.append(forecastImage)
+
+      weatherEl.append(cityTitle)
+
+      //Adds temperature
+      var forecastTemp = document.createElement('p')
+      forecastTemp.textContent = 'Temp: ' + weather.list[0].main.temp + '°F'
+      weatherEl.append(forecastTemp)
+
+      //Gets Wind for each day
+      var forecastWind = document.createElement('p')
+      forecastWind.textContent = 'Wind: ' + weather.list[0].wind.speed + 'MPH';
+      weatherEl.append(forecastWind)
+
+      //Gets Humidity for each day
+      var forecastHumidity = document.createElement('p')
+      forecastHumidity.textContent = 'Humidity: ' + weather.list[0].main.humidity + '%'
+      weatherEl.append(forecastHumidity)
+
+      
+
       var cityUviText = document.createElement('p')
       var cityUvi = document.createElement('span')
       cityUvi = data.current.uvi
