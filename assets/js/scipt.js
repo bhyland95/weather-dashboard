@@ -27,33 +27,39 @@ $("#search-btn").on("click", function () {
     return
   } else {
     var cityName = $(this).siblings('input').val()
+  }
 
     //Sends fetch to openweather map
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${apiKey}`)
-      .then(function (response) {
-        if (response.ok) {
-          response.json().then(function (data) {
-            console.log(data)
-            //Current Forecast 
-            currentWeather(data)
-            //Five day forecast
-            FiveDayForecast(data)
-          });
-          //Saves Seach into Array
-          searchHistory.push(cityName)
-          //Pushes Array into localstorage 
-          saveSearch();
-
-        } else {
-          //If the city input doesnt exist
-          alert('Error: City not found');
-          document.getElementById("city-name").value = "";
-          return
-        }
-      });
-  }
+    fetchWeatherData(cityName)
 });
 
+var fetchWeatherData = function(cityName)
+{
+  console.log(cityName);
+  //Sends fetch to openweather map
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${apiKey}`)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        console.log(data)
+        //Current Forecast 
+        currentWeather(data)
+        //Five day forecast
+        FiveDayForecast(data)
+      });
+      //Saves Seach into Array
+      searchHistory.push(cityName)
+      //Pushes Array into localstorage 
+      saveSearch();
+
+    } else {
+      //If the city input doesnt exist
+      alert('Error: City not found');
+      document.getElementById("city-name").value = "";
+      return
+    }
+  });
+}
 //APPENDS ARRAY UNIQUES INTO BUTTONS TO SHOW SEARCH HISTORY
 var grabHistory = function () {
 
@@ -61,10 +67,13 @@ var grabHistory = function () {
     var liEl = document.createElement('li');
     var buttonEl = document.createElement('button')
     buttonEl.setAttribute('class', 'btn btn-secondary');
+    buttonEl.setAttribute('type', 'button');
     buttonEl.textContent = unique[i];
     liEl.append(buttonEl);
     historyList.append(liEl);
   }
+
+  
 }
 
 //SAVES SEARCHES INTO LOCAL STORAGE
@@ -168,6 +177,10 @@ var FiveDayForecast = function (weather) {
 }
 
 
+
 grabHistory();
 
-
+$(".btn-secondary").on('click', function(event){
+  cityName = ($(this).text())
+  fetchWeatherData(cityName)
+})
