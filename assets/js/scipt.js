@@ -21,6 +21,8 @@ var unique = searchHistory.filter(onlyUnique);
 
 //When Search button is clicked
 $("#search-btn").on("click", function () {
+  //Adds border 
+  $(weatherEl).addClass('border')
   //grabs city name 
   if (!$(this).siblings('input').val()) {
     alert("Please input a city name")
