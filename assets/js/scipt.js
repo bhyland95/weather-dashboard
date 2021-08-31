@@ -62,7 +62,7 @@ var fetchWeatherData = function (cityName) {
           return
         } else {
           liEl.append(buttonEl);
-          historyList.append(liEl);
+          historyList.prepend(liEl);
 
           $(".btn-secondary").on('click', function (event) {
             cityName = ($(this).text())
@@ -140,13 +140,29 @@ var cityLon = weather.city.coord.lon
       weatherEl.append(forecastHumidity)
 
       
-
+      //Adds UV index number
       var cityUviText = document.createElement('p')
-      var cityUvi = document.createElement('span')
+      var cityUviHolder = document.createElement('span')
       cityUvi = data.current.uvi
+      cityUviHolder.textContent = cityUvi
       cityUviText.textContent = 'UV Index: '
-      cityUviText.append(cityUvi)
+      cityUviText.append(cityUviHolder)
       weatherEl.append(cityUviText)
+      
+      //Styles UVI based on results
+      if (cityUvi <= 3 ){
+        $( cityUviHolder ).addClass( "low" );
+      } else if (cityUvi <= 5 && cityUvi > 3 ){
+        $( cityUviHolder ).addClass( "moderate" );
+      } else if (cityUvi <= 7 && cityUvi > 5 ){
+        $( cityUviHolder ).addClass( "high" );
+      } else if (cityUvi <= 10 && cityUvi > 7 ){
+        $( cityUviHolder ).addClass( "very-high" );
+      } else if (cityUvi >10 ){
+        $( cityUviHolder ).addClass( "extreme" )
+      }
+      
+
 
     });
 

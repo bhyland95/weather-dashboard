@@ -66,3 +66,44 @@ form div ul li {
     height: 40%;
     width: 40%;
 }
+
+/* UV Index Stylings */
+
+.low {
+    background-color: rgb(51, 204, 51);
+    border-radius: 4px;
+    padding: 0.25rem;
+    margin: 0.25em;
+}
+
+.moderate {
+    background-color: rgb(255, 255, 102);
+    border-radius: 4px;
+    padding: 0.25rem;
+    margin: 0.25em;
+
+}
+
+.high{
+    background-color: rgb(255, 191, 0);
+    border-radius: 4px;
+    padding: 0.25rem;
+    margin: 0.25em;
+
+}
+
+.very-high{
+    background-color: rgb(255, 64, 0);
+    border-radius: 4px;
+    padding: 0.25rem;
+    margin: 0.25em;
+
+}
+
+.extreme {
+    background-color: rgb(191, 0, 255);
+    border-radius: 4px;
+    padding: 0.25rem;
+    margin: 0.25em;
+
+}
