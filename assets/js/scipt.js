@@ -68,6 +68,8 @@ var fetchWeatherData = function (cityName) {
 
           $(".btn-secondary").on('click', function (event) {
             cityName = ($(this).text())
+            //Adds border 
+            $(weatherEl).addClass('border')
             fetchWeatherData(cityName)
           })
         }
@@ -220,5 +222,7 @@ grabHistory();
 
 $(".btn-secondary").on('click', function (event) {
   cityName = ($(this).text())
+  //Adds border 
+  $(weatherEl).addClass('border')
   fetchWeatherData(cityName)
 })
